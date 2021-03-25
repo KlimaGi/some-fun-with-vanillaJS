@@ -46,12 +46,10 @@ function convertToRoman(num) {
   }
 
   function findRom(x) {
-    // console.log(x);
     var xlength = x.toString().length;
     var pureNum = x / Math.pow(10, xlength - 1); //how many times
-    //console.log("pureNum "+ pureNum);
+
     var numPoint = x / pureNum; //100 , 10, 1...
-    //console.log("numPoint "+ numPoint);
 
     if (pureNum >= 1 && pureNum <= 3) {
       return romObj[numPoint].repeat(pureNum);
@@ -71,11 +69,7 @@ function convertToRoman(num) {
   return rom.join("");
 }
 
-//convertToRoman(36);
-
 console.log(convertToRoman(36));
-// console.log(romObj[1].concat(romObj[5]));
-// console.log((52).toString().length);
 
 //------------------------------------------------------------ --
 //-- Caesars Cipher -- convert code A-M code+13 & M-Z code-13, others symbols stay same
@@ -98,83 +92,7 @@ function rot13(str) {
   return strToCode;
 }
 
-rot13("SERR PBQR PNZC");
-console.log(rot13("SERR PBQR PNZC"));
-console.log("SERR PBQR PNZC".replace("E", "E".charCodeAt(0)));
+//rot13("SERR PBQR PNZC");
 
 console.log(rot13("SERR PBQR PNZC")); // should decode to the string FREE CODE CAMP)
-console.log();
-
-//------------------------------------------------------------- --
-//-- Telephone Number Validator
-
-function telephoneCheck(str) {
-  var regex = /^(1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/;
-  return regex.test(str);
-}
-
-console.log(telephoneCheck("555-555-5555"));
-console.log(telephoneCheck("1555-555-5555"));
-
-// telephoneCheck("5555555555") should return true.
-// telephoneCheck("555-555-5555") should return true.
-// telephoneCheck("(555)555-5555") should return true.
-// telephoneCheck("1 555)555-5555") should return false.
-// telephoneCheck("-1 (757) 622-7382") should return false.
-
-//------------------------------------------------------------- --
-// -- Cash Register
-
-var worths = {
-  PENNY: 0.01,
-  NICKEL: 0.05,
-  DIME: 0.1,
-  QUARTER: 0.25,
-  ONE: 1,
-  FIVE: 5,
-  TEN: 10,
-  TWENTY: 20,
-  "ONE HUNDRED": 100,
-};
-
-function checkCashRegister(price, cash, cid) {
-  var convert = (num) => num * 100;
-
-  var change = convert(cash) - convert(price);
-  var total = cid.reduce((acc, curr) => acc + convert(curr[1]), 0);
-
-  var cidReverce = cid.reverse();
-
-  if (total < change) {
-    return { status: "INSUFFICIENT_FUNDS", change: [] };
-  }
-
-  return [change, total, cidReverce];
-}
-
-checkCashRegister(19.5, 20, [
-  ["PENNY", 1.01],
-  ["NICKEL", 2.05],
-  ["DIME", 3.1],
-  ["QUARTER", 4.25],
-  ["ONE", 90],
-  ["FIVE", 55],
-  ["TEN", 20],
-  ["TWENTY", 60],
-  ["ONE HUNDRED", 100],
-]);
-
-console.log(
-  checkCashRegister(19.5, 20, [
-    ["PENNY", 1.01],
-    ["NICKEL", 2.05],
-    ["DIME", 3.1],
-    ["QUARTER", 4.25],
-    ["ONE", 90],
-    ["FIVE", 55],
-    ["TEN", 20],
-    ["TWENTY", 60],
-    ["ONE HUNDRED", 100],
-  ])
-);
-console.log();
+//  -----------------------------------------
