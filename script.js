@@ -96,3 +96,31 @@ function rot13(str) {
 
 console.log(rot13("SERR PBQR PNZC")); // should decode to the string FREE CODE CAMP)
 //  -----------------------------------------
+// Telephone Number Validator - american
+function telephoneCheck(str) {
+  let checkNum = str.replace(/[^\d]/g, "");
+  let hasPermittedCharsOnly = str.match(/[\s|\-]/g);
+  let twoOr0 = str.match(/[/(/)]/g);
+
+  if (
+    checkNum.length === 10 ||
+    (checkNum.length === 11 && str.charAt(0) == 1)
+  ) {
+    if (hasPermittedCharsOnly === null) {
+      return true;
+    } else if (hasPermittedCharsOnly.length + checkNum.length === str.length) {
+      // mistake, somewhere
+      return true;
+    } else if (/\(\d{3}\b\)/.test(str) && twoOr0.length === 2) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
+
+console.log(telephoneCheck("(5555555555)")); // should return false. - but it's not
+console.log(telephoneCheck("(555)5555555")); // should return true.
+console.log(telephoneCheck("(555)5(55?)-5555")); // false
